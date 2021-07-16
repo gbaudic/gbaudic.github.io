@@ -1,7 +1,9 @@
+---
 layout: post
 title: "Using SDL2 with gtest"
 date: 2021-07-14 14:00:00 +0200
-categories: SDL2 gtest tips-and-tricks c++ development
+tags: SDL2 gtest tips-and-tricks c++ development
+---
 
 # Using SDL2 with the Google Test framework (gtest)
 
