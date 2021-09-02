@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Jenkins build parameters and Multibranch pipelines"
 date: 2021-08-27 14:00:00 +0200
 tags: tips-and-tricks jenkins continuous-integration development multibranch

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Using SDL2 with gtest"
 date: 2021-07-14 14:00:00 +0200
 tags: SDL2 gtest tips-and-tricks c++ development
