@@ -1,10 +1,9 @@
 ---
-title: "Using SDL2 with gtest"
+layout: single
+title: "Using SDL2 with the Google Test framework (gtest)"
 date: 2021-07-14 14:00:00 +0200
 tags: SDL2 gtest tips-and-tricks c++ development
 ---
-
-# Using SDL2 with the Google Test framework (gtest)
 
 I have been spending time on a game project in C++. Being a game, this software builds upon the well-known [SDL2](https://libsdl.org) framework. But being a good software developer, I also wanted to make sure I could cover the software with some unit testing, so I chose to use Google Test as well.
 

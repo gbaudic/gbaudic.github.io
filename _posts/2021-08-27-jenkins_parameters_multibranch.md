@@ -1,10 +1,9 @@
 ---
+layout: single
 title: "Jenkins build parameters and Multibranch pipelines"
 date: 2021-08-27 14:00:00 +0200
 tags: tips-and-tricks jenkins continuous-integration development multibranch
 ---
-
-# Jenkins build parameters and Multibranch pipelines
 
 It took me almost an afternoon of trial-and-error, googling and fixing to get there, which is (for me, at least) way too much for such a basic task. So I thought I would sum it up in a blog post if it can save someone some time in the future... 
 
