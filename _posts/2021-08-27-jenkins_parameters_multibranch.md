@@ -15,7 +15,7 @@ At first try, this simply did not work: regardless of the branch which was updat
 
 ## Multibranch pipelines
 
-Fortunately, Jenkins has a feature for this very purpose: __Multibranch pipelines__. This kind of pipeline will analyze a repository at a regular time interval (or after a trigger from the SCM -- which my install did not offer), and for each branch containing a Jenkinsfile, create a pipeline based on it and run it. 
+Fortunately, Jenkins has a feature for this very purpose: __Multibranch pipelines__. This kind of pipeline will analyze a repository at a regular time interval (or after a trigger from the SCM), and for each branch containing a Jenkinsfile, create a pipeline based on it and run it. 
 
 Creation is straightforward: pick a name, a repository to build from and the authentication details to access it, and you are good to go. You can even start from an existing single-branch pipeline, which is not what I did there despite having one available. 
 
