@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "SVN to Git migration on Windows: when filenames attack"
-date: 2022-03-02 16:00:00 +0100
+date: 2022-04-04 16:00:00 +0100
 tags: git svn windows linux migration tips-and-tricks
 ---
 
@@ -40,23 +40,23 @@ To be fair, Atlassian provides a JAR file to perform these operations in their t
 
 The corresponding bash code looks like this (read it carefully before because it may need some adaptations in your case):
 
-  # Create local branches
-  git for-each-ref refs/remotes/svn --format="%(refname:short)" | sed 's#svn/##' | grep -v '^tags'| while read aBranch; 
-  do 
+    # Create local branches
+    git for-each-ref refs/remotes/svn --format="%(refname:short)" | sed 's#svn/##' | grep -v '^tags'| while read aBranch; 
+    do 
     git branch "$aBranch" "svn/$aBranch" 
-  done
-  # Create the local trunk branch
-  git branch -d trunk 
-  # Create tags
-  git for-each-ref refs/remotes/svn/tags --format="%(refname:short)" | sed 's#svn/tags/##' | while read aTag; 
-  do
+    done
+    # Create the local trunk branch
+    git branch -d trunk 
+    # Create tags
+    git for-each-ref refs/remotes/svn/tags --format="%(refname:short)" | sed 's#svn/tags/##' | while read aTag; 
+    do
     git tag "$aTag" "svn/tags/$aTag"
-  done
-  # Delete remote tags (only if a definitive move to git is planned!!!)
-  git for-each-ref refs/remotes/svn/tags --format="%(refname:short)" | grep 'svn/tags' | while read aTag; 
-  do
+    done
+    # Delete remote tags (only if a definitive move to git is planned!!!)
+    git for-each-ref refs/remotes/svn/tags --format="%(refname:short)" | grep 'svn/tags' | while read aTag; 
+    do
     git tag -d "$aTag"
-  done
+    done
 
 Now all you have to do is push your repo and its tags to its new Git home!
 
