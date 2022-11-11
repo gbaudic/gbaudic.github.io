@@ -22,5 +22,5 @@ It turns out that the cygwin command was being used, despite the script being a 
 
 ## References
 
-  * https://sourceware.org/legacy-ml/cygwin/2018-02/msg00209.html
-  * https://superuser.com/questions/1172840/run-a-windows-command-from-cygwin
+  * <https://sourceware.org/legacy-ml/cygwin/2018-02/msg00209.html>
+  * <https://superuser.com/questions/1172840/run-a-windows-command-from-cygwin>
