@@ -18,7 +18,10 @@ I decided to use the timeout command to wait for a sign of proper shutdown of th
 It turns out that the cygwin command was being used, despite the script being a ``.cmd``. This was possible because the cmd was being run from a bash script launched in Cygwin, and in the PATH variable, Cygwin binaries have precedence over the Windows ones. There are two possible solutions to this issue. 
 
   * Use the Linux syntax instead. This was not an option because the script has to be able to run from a pure Windows console window too. 
-  * Ensure the Windows command gets used all the time. Wrapping the call to timeout in a cmd call did not work, so I eventually managed to get the correct command by specifying the full path to it: ``timeout`` became ``c:\Windows\system32\timeout``. 
+  * Ensure the Windows command gets used all the time. Simply wrapping the call to timeout in a cmd call did not work, so I eventually managed to get the correct command by specifying the full path to it: ``timeout`` became ``c:\Windows\system32\timeout``. The full line then becomes
+
+    cmd /c "c:\Windows\system32\timeout /1 /nobreak > nul"
+
 
 ## References
 
