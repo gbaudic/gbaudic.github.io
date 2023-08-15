@@ -2,12 +2,15 @@
 remote_theme: academicpages/academicpages.github.io@v0.8.1
 plugins:
   - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-feed
 show_downloads: false
 
 # Site Author
 author:
   name             : "Gwilherm Baudic"
   location         : "Toulouse, France"
+  avatar           : "avatar.png"
   github           : "gbaudic"
   orcid            : "https://orcid.org/0000-0002-2268-754X"
 
