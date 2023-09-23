@@ -2,7 +2,7 @@
 layout: single
 title: "Using Eclipse Oomph to produce a customized, portable Eclipse"
 date: 2023-08-14 20:00:00 +0200
-tags: linux oomph eclipse portable java groovy
+tags: linux oomph eclipse portable java groovy installation
 ---
 
 ## The issue
@@ -33,13 +33,20 @@ This one is pretty well documented in the Eclipse Oomph FAQ page. For convenienc
 
 ### Editing the eclipse.ini file
 
-Pretty straightforward. You can add a child for this, set the key and the value, and select if it is an Eclipse or a Java VM argument. For example, to make your new Eclipse start with 4 GB of RAM, use as key ``-Xmx``, value ``4096m``, and tick the box to indicate this is actually a VM parameter. 
+Pretty straightforward. You can add a child for this, set the key and the value, and select if it is an Eclipse or a Java VM argument. For example, to make your new Eclipse start with 4 GB of RAM, use as key ``-Xmx``, value ``4096m``, and tick the box to indicate this is actually a VM parameter so that it lands at the right place in the file. 
 
 ### Setting user preferences
 
 For this purpose, you will have to select another type in the Setup editor.  
-However, this approach implies that you already know the name of the configuration option you are trying to set. Another way of doing it is to use in the toolbar the "Capture preferences" button, which allows you to use any of the configuration options set in your current IDE and add them to your setup file. In my case of a Java IDE, for example, I chose to have the heap status shown by default and to circumvent the Welcome screen on the first run. I also tried setting the Java VMs by default, but this preference did not seem to have been taken into account in my case.  
+However, this approach implies that you already know the name of the configuration option you are trying to set. Another way of doing it is to use in the toolbar the "Capture preferences" button, which allows you to use any of the configuration options set in your current IDE and add them to your setup file. In my case of a Java IDE, for example, I chose to have the heap status shown by default and to circumvent the Welcome screen on the first run.  
+There is also a Resource Creation task which allows you to create a file and populate it with some values at once, but I have not had to use it so far.  
 **Important**: the preferences are being setup on the first run of the installed IDE, not at installation time. Therefore, to ensure this, your custom IDE needs to have the ``org.eclipse.oomph.setup`` feature in it. I recommend adding it explicitly by looking for it in the Expert view of the Repository Explorer while browsing the eclipse P2 repository. 
+
+#### Specific case: the JRE settings
+
+Some research on the eclipse forums showed me that it was indeed not possible to setup preferences where the contents are presented in the form of an XML blob. Unfortunately, the *list* of available JREs falls into this category. Since this is not an Eclipse but rather an Eclipse **JDT** preference, both the eclipse where you are editing the ``.setup`` file and the installed one will require the Oomph Setup SDK to be installed, which brings the Oomph Setup JDT feature.  
+Once this is done, you will be able to add as a new child to your file a JRE Task. The properties to set are pretty straightforward: pick a name, a version, select the Standard VM category, choose if this is supposed to be the default or not, and pick a path. By default, this is is going to be a variable, which means that the user will have to specify it when running Oomph, but it is perfectly possible to hardcode a path here as well if you know what you are doing. Beware though, that the path you are specifying will need to point to a valid JRE on the computer where the installation will take place: failure to do so will greet you with an error on the first launch otherwise. I also noticed that in this erroneous case, the other preferences (if any) would not be applied.  
+Note that the most recent versions of eclipse ship with a JRE: it will already appear in the list without any action required. The JRE Task is therefore only required if you do not want (or cannot) use a Java 17 JRE on your projects. 
 
 ### Running Oomph
 
@@ -60,6 +67,7 @@ It is worth noticing that Oomph can do way much more than what is explained in t
 ## References
 
   * <https://www.eclipse.org/forums/index.php/t/1110408/>
+  * <https://www.eclipse.org/forums/index.php/t/1074416/>
   * <https://wiki.eclipse.org/Eclipse_Oomph_Authoring#The_preference_task_does_not_setup_any_preferences>
   * <https://wiki.eclipse.org/Eclipse_Installer>
 
